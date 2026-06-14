@@ -1,9 +1,9 @@
 # 🐳 3-Tier Node.js Application with Docker Compose
 
 ## 📂 Navigation
-- [Backend Dockerfile](./backend/Dockerfile)
-- [Frontend Dockerfile](./frontend/Dockerfile)
-- [docker-compose.yml](./docker-compose.yml)
+- [Backend Dockerfile](./3tier-nodejs/backend/Dockerfile)
+- [Frontend Dockerfile](./3tier-nodejs/frontend/Dockerfile)
+- [docker-compose.yml](./3tier-nodejs/docker-compose.yml)
 
 ---
 
@@ -36,9 +36,9 @@ This directory demonstrates a full-stack, 3-tier web application using Docker Co
 
 
 ## 🧭 File Navigation
-- **[backend/Dockerfile](./backend/Dockerfile):** Multi-stage build for the Node.js backend
-- **[frontend/Dockerfile](./frontend/Dockerfile):** Multi-stage build for the React frontend
-- **[docker-compose.yml](./docker-compose.yml):** Orchestrates all three services for local development
+- **[backend/Dockerfile](./3tier-nodejs/backend/Dockerfile):** Multi-stage build for the Node.js backend
+- **[frontend/Dockerfile](./3tier-nodejs/frontend/Dockerfile):** Multi-stage build for the React frontend
+- **[docker-compose.yml](./3tier-nodejs/docker-compose.yml):** Orchestrates all three services for local development
 
 ---
 
