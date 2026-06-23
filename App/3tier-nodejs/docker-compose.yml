@@ -1,28 +1,41 @@
-version: '3.8'
-
 services:
-
-  mongo:
-    image: mongo:6.0
-    container_name: mongo
+  frontend:
+    build: ./frontend
+    container_name: frontend
     ports:
-      - "27017:27017"
+      - "3000:80"
+    depends_on:
+      - backend
 
   backend:
     build: ./backend
     container_name: backend
     ports:
-      - "3001:3001"
+      - "5002:5000"
+    volumes:
+      - ./backend:/app
+    environment:
+      DB_HOST: mongo
     depends_on:
       - mongo
-    environment:
-      MONGO_HOST: mongo
-      MONGO_PASSWORD: 123
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 
-  frontend:
-    build: ./frontend
-    container_name: frontend
+  mongo:
+    image: mongo:6
+    container_name: mongo
     ports:
-      - "8081:80"
-    depends_on:
-      - backend
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
