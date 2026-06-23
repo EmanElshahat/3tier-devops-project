@@ -9,7 +9,7 @@ const password = process.env.MONGO_PASSWORD;
 const host = process.env.MONGO_HOST;
 
 
-const uri = `mongodb://master:${password}@${host}:27017/?tls=true&tlsCAFile=global-bundle.pem&retryWrites=false`;
+const uri = `mongodb://mongo:27017/mydb`;
 
 main().catch((err) => console.log("❌ Connection failed:", err));
 
@@ -23,7 +23,10 @@ async function main() {
   app.use(cors());
   app.use(express.json());
   app.use("/api", routes);
-
+  
+  app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+  });
   app.listen(port, () => {
     console.log(`🚀 Server is listening on port: ${port}`);
   });
